@@ -59,6 +59,25 @@ const boxBookingConfirmation = (user, email, box, date, start, end) => {
     },
   };
 };
+const bookBookingConfirmation = (user, email, book, startDay, endDay) => {
+  return {
+    sendBookConfirmation: function () {
+      return {
+        from,
+        to: email,
+        subject: "Box reservation",
+        html: `<h3><strong>Dear ${user},</strong></h3> Box ${book} has been booked for you from ${startDay} until ${endDay}.
+        <br>
+        <br>Thank you,
+        <br>Library Team
+        <br>
+        <br>
+        <hr>
+    <div style="color:rgb(127, 127, 127);font-size:small;text-align:center"><em>ISS396 Project, Booking System Application.</em></div>`,
+      };
+    },
+  };
+};
 // Get OAuth2 "session" token
 const oauth2Client = new OAuth2(
   process.env.G_CLIENT_ID,
@@ -92,4 +111,5 @@ module.exports = {
   otpEmailMessages: otpEmailMessages,
   transporter: transporter,
   boxBookingConfirmation: boxBookingConfirmation,
+  bookBookingConfirmation: bookBookingConfirmation
 };
