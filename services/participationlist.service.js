@@ -1,7 +1,7 @@
 const ParticipationList = require("../models/ParticipationList");
 const mongoose = require("mongoose");
 
-function ApplicationListService() {
+function ParticipationListService() {
     async function getParticipation() {
     return ParticipationList.find();
     }
