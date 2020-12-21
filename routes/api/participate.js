@@ -1,6 +1,6 @@
 const Router = require("express").Router;
-const myParticipationService = require("../../services/myParticipation.service");
-const ParticipationListService = require("../../services/ParticipationList.service")();
+const ParticipationService = require("../../services/myParticipation.service");
+
 
 // const { verifyToken } = require("../../helpers/verifyToken");
 
@@ -8,7 +8,7 @@ const router = Router({
   mergeParams: true
 });
 
-router.get("/participationList", async (req, res) => {
+router.get("/ParticipationList", async (req, res) => {
   try {
     const participationList = await ParticipationListService.getParticipation();
     res.send(participationList);
@@ -16,6 +16,17 @@ router.get("/participationList", async (req, res) => {
   catch (e) {
     console.log(e);
     res.json({ success: false, msg: "Failed to get participation"});
+  }
+});
+
+router.get("/ParticipationList/:status", async (req, res) => {
+  try {
+    const ParticipationList = await ParticipationListService.getParticipationByStatus(req.params.status);
+    res.send(ParticipationList);
+  }
+  catch (e) {
+    console.log(e);
+    res.json({ success: false, msg: "Failed to get Participation by status"});
   }
 });
 

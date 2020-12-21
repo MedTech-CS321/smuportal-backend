@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const ParticipationListSchema = new mongoose.Schema({
     _ParticipationId: [
         {
@@ -6,14 +7,7 @@ const ParticipationListSchema = new mongoose.Schema({
           required: true,
           ref: "user"
         }
-    ],
-    //Validation
-    Valid:{
-        type: String,
-        lowercase: true,
-        enum: ["valid", "invalid","none"],
-        default: "none"
-    }
+    ]
     
 });
 module.exports = mongoose.model("ParticipationList", ParticitpationListSchema);
